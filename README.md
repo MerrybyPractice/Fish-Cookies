@@ -1,0 +1,1 @@
+Config files (.gitignore and .eslintrc.json) taken from codefellows 201d45 class repo 
