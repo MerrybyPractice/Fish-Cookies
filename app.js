@@ -20,7 +20,7 @@ As a developer, I want to make some headway on the public-facing page for the bu
 */
 
 /* obj literals for each cookie stand
-    each needs to: 
+    each needs to:
       store min/max hourly customers, average cookies per customer in object properties
       uses a method of that object to generate a random number of customers per hour
       calculate and store the simulated ammounts of cookies purchased for each hour location using average cookies purchased and the random number of cookies generated
@@ -40,6 +40,8 @@ As a developer, I want to make some headway on the public-facing page for the bu
 //variable max num cust per hour
 //variable num cookies purchased per cust
 
+var all_hours = '14';
+
 //1st and Pike
 
 var first_and_pike = {
@@ -47,6 +49,9 @@ var first_and_pike = {
   min_cust: '23',
   max_cust: '65',
   avg_cookie: '6.3',
+  first_and_pike_CPH: function(min_cust, max_cust) {
+    return (math.random());
+  }
 };
 
 //SeaTac AirPort
@@ -83,4 +88,4 @@ var alki = {
   min_cust: '2',
   max_cust: '16',
   avg_cookie: '4.6',
-}
+};
