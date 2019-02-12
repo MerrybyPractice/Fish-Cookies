@@ -41,7 +41,7 @@ As a developer, I want to make some headway on the public-facing page for the bu
 //variable num cookies purchased per cust
 
 var all_hours = '14';
-
+console.log('hello world!!!');
 //1st and Pike
 
 var first_and_pike = {
@@ -49,10 +49,15 @@ var first_and_pike = {
   min_cust: '23',
   max_cust: '65',
   avg_cookie: '6.3',
-  first_and_pike_CPH: function(min_cust, max_cust) {
-    return (math.random());
-  }
+  first_and_pike_CPH: function() {
+    var min = Math.ceil(this.min_cust);
+    var max = Math.floor(this.max_cust);
+    return Math.floor(Math.random()*(max - min +1))+min;
+  },
 };
+console.log(first_and_pike.first_and_pike_CPH());
+
+
 
 //SeaTac AirPort
 
@@ -61,7 +66,15 @@ var seatac = {
   min_cust: '3',
   max_cust: '24',
   avg_cookie: '1.2',
+  seatac_CHP: function () {
+    var min = Math.ceil(this.min_cust);
+    var max = Math.floor(this.max_cust);
+    return Math.floor(Math.random()*(max-min +1))+min;
+
+  }
 };
+
+console.log(seatac.seatac_CHP());
 
 //Seattle Center
 
@@ -70,7 +83,14 @@ var sea_cen = {
   min_cust: '11',
   max_cust: '38',
   avg_cookie: '3.7',
+  sea_cen_CPH: function (){
+    var min = Math.ceil(this.min_cust);
+    var max = Math.floor(this.max_cust);
+    return Math.floor(Math.random()*(max-min))+min;
+  }
 };
+
+console.log(sea_cen.sea_cen_CPH());
 
 //Capitol Hill
 
@@ -79,7 +99,14 @@ var cap_hill = {
   min_cust: '20',
   max_cust: '38',
   avg_cookie: '2.3',
+  cap_hill_CPH: function (){
+    var min = Math.ceil(this.min_cust);
+    var max = Math.floor(this.max_cust);
+    return Math.floor(Math.random()*(max-min))+min;
+  }
 };
+
+console.log(cap_hill.cap_hill_CPH());
 
 //Alki
 
@@ -88,4 +115,10 @@ var alki = {
   min_cust: '2',
   max_cust: '16',
   avg_cookie: '4.6',
+  alki_CPH: function() {
+    var min = Math.ceil(this.min_cust);
+    var max = Math.floor(this.max_cust);
+    return Math.floor(Math.random()*(max-min))+min;
+  }
 };
+console.log(alki.alki_CPH());
