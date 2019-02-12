@@ -21,8 +21,8 @@ As a developer, I want to make some headway on the public-facing page for the bu
 
 /* obj literals for each cookie stand
     each needs to:
-      store min/max hourly customers, average cookies per customer in object properties
-      uses a method of that object to generate a random number of customers per hour
+
+
       calculate and store the simulated ammounts of cookies purchased for each hour location using average cookies purchased and the random number of cookies generated
       store the results for each location in a seperate array...perhaps as a property of the object representing that location
       display the values of each array as an unordered list in the browser
@@ -40,8 +40,27 @@ As a developer, I want to make some headway on the public-facing page for the bu
 //variable max num cust per hour
 //variable num cookies purchased per cust
 
+//time - write in military time. When I print it, check if 12 has happened. If === 12, switch to pm, if 12 has appeared, append 12pm and subtract 12.
+
+// cookie counter function
+
+function cookie_counter(store) {
+
+  for(var i = 6; i<20; i++){
+    var CPH = Math.floor(store.CPH()*store.avg_cookie);
+    store.customer_array.push(CPH);
+
+    console.log(CPH);
+  }
+  console.log(store.customer_array);
+}
+
+
 var all_hours = '14';
 console.log('hello world!!!');
+
+
+
 //1st and Pike
 
 var first_and_pike = {
@@ -49,13 +68,18 @@ var first_and_pike = {
   min_cust: '23',
   max_cust: '65',
   avg_cookie: '6.3',
-  first_and_pike_CPH: function() {
+  customer_array: [ ],
+  CPH: function() {
     var min = Math.ceil(this.min_cust);
     var max = Math.floor(this.max_cust);
     return Math.floor(Math.random()*(max - min +1))+min;
   },
 };
-console.log(first_and_pike.first_and_pike_CPH());
+
+
+
+
+console.log('first and pike array '+cookie_counter(first_and_pike));
 
 
 
@@ -66,7 +90,8 @@ var seatac = {
   min_cust: '3',
   max_cust: '24',
   avg_cookie: '1.2',
-  seatac_CHP: function () {
+  customer_array: [ ],
+  CPH: function () {
     var min = Math.ceil(this.min_cust);
     var max = Math.floor(this.max_cust);
     return Math.floor(Math.random()*(max-min +1))+min;
@@ -74,7 +99,7 @@ var seatac = {
   }
 };
 
-console.log(seatac.seatac_CHP());
+console.log(cookie_counter(seatac));
 
 //Seattle Center
 
@@ -83,14 +108,15 @@ var sea_cen = {
   min_cust: '11',
   max_cust: '38',
   avg_cookie: '3.7',
-  sea_cen_CPH: function (){
+  customer_array: [],
+  CPH: function (){
     var min = Math.ceil(this.min_cust);
     var max = Math.floor(this.max_cust);
     return Math.floor(Math.random()*(max-min))+min;
   }
 };
 
-console.log(sea_cen.sea_cen_CPH());
+console.log(cookie_counter(sea_cen));
 
 //Capitol Hill
 
@@ -99,14 +125,14 @@ var cap_hill = {
   min_cust: '20',
   max_cust: '38',
   avg_cookie: '2.3',
-  cap_hill_CPH: function (){
+  CPH: function (){
     var min = Math.ceil(this.min_cust);
     var max = Math.floor(this.max_cust);
     return Math.floor(Math.random()*(max-min))+min;
   }
 };
 
-console.log(cap_hill.cap_hill_CPH());
+console.log(cookie_counter(cap_hill));
 
 //Alki
 
@@ -121,4 +147,4 @@ var alki = {
     return Math.floor(Math.random()*(max-min))+min;
   }
 };
-console.log(alki.alki_CPH());
+console.log(cookie_counter(alki));
