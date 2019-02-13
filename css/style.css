@@ -1,0 +1,11 @@
+
+/* General Styling */
+
+
+/* Table Styling */
+
+th, tr, td {
+  width: 50 em; 
+  height: 25 em; 
+  border: .5 em solid black; 
+}

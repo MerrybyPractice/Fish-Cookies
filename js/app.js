@@ -17,9 +17,9 @@ Working on a non-master branch for the day, with regular commit history. Basical
 // helper funcitons
 
 //this converts the time measure from 24 hour clock to 12 hour clock.
-function print_time_conversion (){
+function print_time_conversion (open, close){
 
-  for(var t= open.first_pike; t< closed.first_and_pike;t++){
+  for(var t= open; t< close;t++){
 
     if (t<12){
       var hour = t + 'am';
@@ -36,9 +36,9 @@ function print_time_conversion (){
       var hour = t-12+'pm';
     }
 
-    var tr = document.createElement('tr');
-    tr.textContent = `${hour}:`;
-    document.getElementsByTagName('tr').appendChild(tr);
+    var td = document.createElement('td');
+    td.textContent = `${hour}`;
+    document.getElementById('timerow').appendChild(td);
     if(t===20){
       break;
     }
@@ -48,10 +48,13 @@ function print_time_conversion (){
 }
 
 function print_number_cookies (store){
-  for(var t= 0; t< store.customer_array; t++){
+
+  for(var t= 0; t< store.customer_array.length; t++){
     var td = document.createElement('td');
-    td.textContent = `${store.customer_array} Cookies`;
-    document.getElementById(store.time_row).appendChild(td);
+    console.log(store.customer_array[t]);
+    console.log('-------');
+    td.textContent = `${store.customer_array[t]} Cookies`;
+    document.getElementById(store.store_id).appendChild(td);
     if (t===20){
       break;
     }
@@ -59,8 +62,9 @@ function print_number_cookies (store){
 }
 // constructor functions
 
-var Store = function(store_location, store_open, store_closed, min_cust, max_cust, avg_cookie){
+var Store = function(store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie){
   this.store_location = store_location;
+  this.store_id = store_id;
   this.store_open = store_open;
   this.store_closed = store_closed;
   this.duration = store_closed - store_open;
@@ -96,59 +100,51 @@ var Store = function(store_location, store_open, store_closed, min_cust, max_cus
 // function cookie_sum(store){
 // }
 
-
-
 //1st and Pike
-var first_and_pike = new Store('First and Pike', 6, 20, 23, 65, 6.3) ;
-
-console.log(first_and_pike);
+var first_and_pike = new Store('First and Pike', 'firstpike', 6, 20, 23, 65, 6.3) ;
 
 //SeaTac AirPort
 
-var seatac = new Store('SeaTac Airport', 6, 20, 3, 24, 1.2);
-
-console.log(seatac);
+var seatac = new Store ('SeaTac Airport', 'seatac', 6, 20, 3, 24, 1.2);
 
 //Seattle Center
 
-var sea_cen = new Store ('Seattle Center', 6, 20, 11, 38, 3.7);
-
-console.log(sea_cen);
+var sea_cen = new Store ('Seattle Center', 'seacen', 6, 20, 11, 38, 3.7);
 
 //Capitol Hill
 
-var cap_hill = new Store ('Capitol Hill', 6, 20, 20, 38, 2.3);
-
-console.log(cap_hill);
+var cap_hill = new Store ('Capitol Hill', 'caphill', 6, 20, 20, 38, 2.3);
 
 //Alki
 
-var alki = new Store ('Alki', 6, 20, 2, 16, 4.6);
+var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
 var page_div = document.createElement('div');
 page_div.textContent = 'Sales Numbers';
 document.body.appendChild(page_div);
 var table = document.createElement('table');
-table.setAttribute('id', 'cookies per hour');
-console.log(table);
+table.setAttribute('id', 'cookies_per_hour');
+
 document.getElementsByTagName('div')[0].appendChild(table);
-var tr = document.createElement ('tr');
-tr.setAttribute('id','time row');
+var timerow = document.createElement ('tr');
+timerow.setAttribute('id','timerow');
+document.getElementById('cookies_per_hour').appendChild(timerow);
+var empty_box = document.createElement ('td');
+empty_box.textContent = '    ';
+document.getElementById('timerow').appendChild(empty_box);
+
+print_time_conversion(6, 20);
 
 function store_list(store){
-  document.getElementsByTagName('div')[0].appendChild(tr);
-  var tr = document.createElement('tr');
-  tr.textContent = `${store.store_location}`;
+  var store_name = document.createElement('tr');
+  store_name.setAttribute('id', store.store_id);
+  store_name.textContent = `${store.store_location}`;
+  document.getElementById('cookies_per_hour').appendChild(store_name);
+
 
   print_number_cookies(store);
-  print_time_conversion(store);
-  // var tr = document.createElement('tr');
-  // tr.textContent =`: ${store.customer_array[t-6]} Cookies`;
-  // document.getElementById(store.store_location).appendChild(tr);
 
-  // if(t===20){
-  //   break;
-  // }
+
   // var tr_two = document.createElement('tr');
   // tr_two.textContent=`Tottal: ${cookie_sum(store)} Cookies`,
   // document.getElementById(store.store_list).appendChild(tr_two);
