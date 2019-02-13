@@ -5,18 +5,20 @@ User Stories (MVP)
 Priotity 2: A table to show the total amount of projected cookie needs at each location, with the table displaying the cookie stand location, the total number of cookies needed for each location, an hourly breakdown of total cookies sales for each location, and a footer row of totals for each column.
 
 Technical Requirements (MVP)
-Each cookie stand location should have a separate render() method that creates and appends its row to the table
-The header row and footer row are each created in their own stand-alone function
 Duplicate code has been removed and DRY principles are evident
 Working on a non-master branch for the day, with regular commit history. Basically, every time you get something to work, you should do a commit. But you only need to push every couple of hours or so, tops
 =========================================================================================================================================
+
+to add a new store:
+  enter all data in constructor function
+  add to store array
 */
 
 
 
 // helper funcitons
 
-//this converts the time measure from 24 hour clock to 12 hour clock.
+//this converts the time measure from 24 hour clock to 12 hour clock and prints it to the timerow
 function print_time_conversion (open, close){
 
   for(var t= open; t< close;t++){
@@ -47,12 +49,12 @@ function print_time_conversion (open, close){
   }
 }
 
-function print_number_cookies (store){
+//this pulls the number of cookies perhour
 
+function print_number_cookies (store){
+  store.cph();
   for(var t= 0; t< store.customer_array.length; t++){
     var td = document.createElement('td');
-    console.log(store.customer_array[t]);
-    console.log('-------');
     td.textContent = `${store.customer_array[t]} Cookies`;
     document.getElementById(store.store_id).appendChild(td);
     if (t===20){
@@ -60,6 +62,28 @@ function print_number_cookies (store){
     }
   }
 }
+
+//this calculates the tottal number of hourly cookies and prints them in the bottom row
+
+var hourly_totals =  function (){
+  var store_array = [ first_and_pike, seatac, sea_cen, cap_hill, alki];
+  for(var h=0; h < 14; h++){
+    var l = 0;
+    for (var j=0; j<store_array.length; j++){
+      console.log(store_array[j].customer_array[h]);
+      var k = store_array[j].customer_array[h];
+      l += k;
+    }
+    var hourly_td = document.createElement('td');
+    hourly_td.textContent = `${l} Cookies`;
+    document.getElementById('per_hour_total').appendChild(hourly_td);
+  }
+
+};
+
+
+
+
 // constructor functions
 
 var Store = function(store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie){
@@ -83,19 +107,6 @@ var Store = function(store_location, store_id, store_open, store_closed, min_cus
 };
 
 // ============================
-
-
-
-// cookie counter function
-
-// function cookie_counter(store) {
-
-//   for(var i = 6; i<21; i++){
-//     var cph = Math.floor(store.cph()*store.avg_cookie);
-//     store.customer_array.push(cph);
-
-//   }
-// }
 
 // function cookie_sum(store){
 // }
@@ -129,9 +140,12 @@ document.getElementsByTagName('div')[0].appendChild(table);
 var timerow = document.createElement ('tr');
 timerow.setAttribute('id','timerow');
 document.getElementById('cookies_per_hour').appendChild(timerow);
+
 var empty_box = document.createElement ('td');
 empty_box.textContent = '    ';
 document.getElementById('timerow').appendChild(empty_box);
+
+
 
 print_time_conversion(6, 20);
 
@@ -150,16 +164,24 @@ function store_list(store){
   // document.getElementById(store.store_list).appendChild(tr_two);
 
 }
+var total = document.createElement('td');
+total.textContent = 'Daily Location Total';
+document.getElementById('timerow').appendChild(total);
 
-first_and_pike.cph();
+
+
 store_list(first_and_pike);
-seatac.cph();
+
 store_list(seatac);
-sea_cen.cph();
+
 store_list(sea_cen);
-cap_hill.cph();
+
 store_list(cap_hill);
-alki.cph();
+
 store_list(alki);
 
-
+var per_hour_total = document.createElement('tr');
+per_hour_total.textContent = 'Hourly Totals';
+per_hour_total.setAttribute('id', 'per_hour_total');
+document.getElementById('cookies_per_hour').appendChild(per_hour_total);
+hourly_totals();
