@@ -17,9 +17,9 @@ Working on a non-master branch for the day, with regular commit history. Basical
 // helper funcitons
 
 //this converts the time measure from 24 hour clock to 12 hour clock.
-function print_time_conversion (store){
+function print_time_conversion (){
 
-  for(var t= store.store_open; t< store.store_closed;t++){
+  for(var t= open.first_pike; t< closed.first_and_pike;t++){
 
     if (t<12){
       var hour = t + 'am';
@@ -38,7 +38,7 @@ function print_time_conversion (store){
 
     var tr = document.createElement('tr');
     tr.textContent = `${hour}:`;
-    document.getElementById(store.store_location).appendChild(tr);
+    document.getElementsByTagName('tr').appendChild(tr);
     if(t===20){
       break;
     }
@@ -48,10 +48,10 @@ function print_time_conversion (store){
 }
 
 function print_number_cookies (store){
-  for(var t= store.store_open; t< store.store_closed;t++){
-    var tr = document.createElement('tr');
-    tr.textContent = `${store.customer_array} Cookies`;
-    document.getElementById(store.store_location).appendChild(tr);
+  for(var t= 0; t< store.customer_array; t++){
+    var td = document.createElement('td');
+    td.textContent = `${store.customer_array} Cookies`;
+    document.getElementById(store.time_row).appendChild(td);
     if (t===20){
       break;
     }
@@ -128,18 +128,20 @@ var alki = new Store ('Alki', 6, 20, 2, 16, 4.6);
 var page_div = document.createElement('div');
 page_div.textContent = 'Sales Numbers';
 document.body.appendChild(page_div);
+var table = document.createElement('table');
+table.setAttribute('id', 'cookies per hour');
+console.log(table);
+document.getElementsByTagName('div')[0].appendChild(table);
+var tr = document.createElement ('tr');
+tr.setAttribute('id','time row');
 
 function store_list(store){
-  var h4 = document.createElement('h4');
-  h4.textContent = `${store.store_location}`;
-  document.getElementsByTagName('div')[0].appendChild(h4);
-  var table = document.createElement('table');
-  table.setAttribute('id', store.store_location);
-  document.getElementsByTagName('div')[0].appendChild(table);
+  document.getElementsByTagName('div')[0].appendChild(tr);
+  var tr = document.createElement('tr');
+  tr.textContent = `${store.store_location}`;
 
-  print_time_conversion(store);
   print_number_cookies(store);
-
+  print_time_conversion(store);
   // var tr = document.createElement('tr');
   // tr.textContent =`: ${store.customer_array[t-6]} Cookies`;
   // document.getElementById(store.store_location).appendChild(tr);
