@@ -2,11 +2,26 @@
 /*
 
 User Stories (MVP)
-Priotity 2: A table to show the total amount of projected cookie needs at each location, with the table displaying the cookie stand location, the total number of cookies needed for each location, an hourly breakdown of total cookies sales for each location, and a footer row of totals for each column.
+Priotity 2: a footer row of totals for each column.
 
 Technical Requirements (MVP)
-Duplicate code has been removed and DRY principles are evident
-Working on a non-master branch for the day, with regular commit history. Basically, every time you get something to work, you should do a commit. But you only need to push every couple of hours or so, tops
+Add the necessary HTML to create the input form.
+  Don't forget <fieldset>!
+  Use the constructor function as your guide to determine what input fields your form needs (hint: also consider what is passed in when creating instances!)
+
+Your JS will need an event listener and and event handler, and you may also want a variable to facilitate DOM access to the form.
+  As we saw in class, the event handler should take the data from the input field, pass it into the constructor function, and create a new instance of a cookie stand that then appends to the table.
+  Are you going to do any error correction on input? You probably should. Look at what kind of input validation is built in to HTML5.
+
+If not complete from lab 7, continue to work on writing a stand-alone function to generate a footer row which will display the total number of cookies sold per hour for all locations. When a new store is added using your form, the totals in the footer row should update to include these new sales numbers.
+
+Build incrementally. Test frequently.
+
+Be attentive to overall code structure.
+  This is a good point to refactor your code into smaller functions/methods if you have some huge functions going on. Remember that each function should do one thing, and then you can compose more complex behavior out of functions.
+  Anywhere you have repeated chunks of code, maybe you can start to apply some DRY principles. Generally, once some chunk of code is appearing for a 3rd time or so, that's when you want to consider refactoring.
+  When making code more DRY, look for repeated behaviors that act on different pieces of data. Put the behavior into a function that is declared with parameters to receive the unique data, and then replace the repeated code with the function called with the unique data in arguments.
+
 =========================================================================================================================================
 
 to add a new store:
@@ -18,7 +33,16 @@ to add a new store:
 
 // helper funcitons
 
+//create-text fill-apend
+function build_text_fill_apend(el, el_string, text, parent_id){
+
+  var el = document.createElement(el_string);
+  el.textContent = text;
+  document.getElementById(parent_id).appendChild(el);
+};
+
 //this converts the time measure from 24 hour clock to 12 hour clock and prints it to the timerow
+
 function print_time_conversion (open, close){
 
   for(var t= open; t< close;t++){
@@ -37,7 +61,7 @@ function print_time_conversion (open, close){
       // eslint-disable-next-line no-redeclare
       var hour = t-12+'pm';
     }
-
+//could refactor creat - text - append into a function?
     var td = document.createElement('td');
     td.textContent = `${hour}`;
     document.getElementById('timerow').appendChild(td);
@@ -80,9 +104,6 @@ var hourly_totals =  function (){
   }
 
 };
-
-
-
 
 // constructor functions
 

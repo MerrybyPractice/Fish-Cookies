@@ -4,8 +4,8 @@
 
 /* Table Styling */
 
-th, tr, td {
-  width: 50 em; 
-  height: 25 em; 
-  border: .5 em solid black; 
+table {
+  width: 50 ems; 
+  height: 25 ems; 
+  border: .5 ems solid black; 
 }
