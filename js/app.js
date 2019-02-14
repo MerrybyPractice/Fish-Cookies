@@ -146,8 +146,19 @@ var cap_hill = new Store ('Capitol Hill', 'caphill', 6, 20, 20, 38, 2.3);
 
 var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
-/* form code */
-var form_array = [ ];
+/* form code*/
+//event.target === the form
+var store_location = event.target.store_location.value;
+var store_open = event.target.store_open.value || null;
+var store_closed = event.target.store_closed.value || null;
+var min_cust = event.target.min_cust.value || null;
+var max_cust = event.target.max_cust.value || null;
+var avg_cookie = event.target.avg_cookie.value || null;
+
+var new_store = new Store (store_location, store_open, store_closed, min_cust, max_cust, avg_cookie);
+console.log(new_store);
+
+/*var form_array = [ ];
 
 var my_great_function = function (event) {
   event.preventDefault();
@@ -161,11 +172,9 @@ var my_great_function = function (event) {
 
   }
 };
-console.log(form_array);
-console.log(document.getElementById('avg_cookie'));
 
 var create_new = document.getElementById('create_new');
-create_new.addEventListener('submit', my_great_function);
+create_new.addEventListener('submit', my_great_function);*/
 
 
 /* and here we render */
