@@ -118,7 +118,7 @@ Store.prototype.cph = function (){
 };
 
 Store.prototype.hourly_totals = function (){
-  
+
   for(var h=0; h < 14; h++){
     console.log('Hello!');
     var sum = 0;
@@ -157,12 +157,14 @@ var cap_hill = new Store ('Capitol Hill', 'caphill', 6, 20, 20, 38, 2.3);
 
 var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
+/* form code */
+
 /* and here we render */
 
-Store.store_location.prototype.render = function () {
+// Store.store_location.prototype.render = function () {
 
-  var 
-}
+// //   var row_store_name = document.createElement('tr');
+// // }
 
 var page_div = document.createElement('div');
 page_div.textContent = 'Sales Numbers';

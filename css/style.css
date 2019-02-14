@@ -5,7 +5,8 @@
 /* Table Styling */
 
 table {
-  width: 50 ems; 
-  height: 25 ems; 
-  border: .5 ems solid black; 
+  display: table;
+  width: 50em; 
+  height: 25em; 
+  border-spacing:2em; 
 }
