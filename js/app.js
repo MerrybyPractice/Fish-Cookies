@@ -88,12 +88,12 @@ function print_number_cookies (store){
 var Store = function(store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie){
   this.store_location = store_location;
   this.store_id = store_id;
-  this.store_open = store_open;
-  this.store_closed = store_closed;
+  this.store_open = store_open || 6;
+  this.store_closed = store_closed || 20;
   this.duration = store_closed - store_open;
-  this.min_cust = min_cust;
-  this.max_cust = max_cust;
-  this.avg_cookie = avg_cookie;
+  this.min_cust = min_cust || 12;
+  this.max_cust = max_cust || 36;
+  this.avg_cookie = avg_cookie || 4;
   this.customer_array = [ ];
   this.cph();
   this.hourly_totals();
@@ -158,6 +158,12 @@ var cap_hill = new Store ('Capitol Hill', 'caphill', 6, 20, 20, 38, 2.3);
 var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
 /* form code */
+var my_great_function = function () { 
+
+  console.log('did the thing!');
+};
+var store_location = document.getElementById('create_new');
+store_location.addEventListener('submit', my_great_function);
 
 /* and here we render */
 
