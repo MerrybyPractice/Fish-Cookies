@@ -1,21 +1,20 @@
 'use strict';
 /*
+TODO:
+  connect form to constructor
+  side column of shop totals
+  render new constructors
 
 User Stories (MVP)
 Priotity 2: a footer row of totals for each column.
 
 Technical Requirements (MVP)
-Add the necessary HTML to create the input form.
-  Don't forget <fieldset>!
-  Use the constructor function as your guide to determine what input fields your form needs (hint: also consider what is passed in when creating instances!)
 
 Your JS will need an event listener and and event handler, and you may also want a variable to facilitate DOM access to the form.
   As we saw in class, the event handler should take the data from the input field, pass it into the constructor function, and create a new instance of a cookie stand that then appends to the table.
   Are you going to do any error correction on input? You probably should. Look at what kind of input validation is built in to HTML5.
 
 If not complete from lab 7, continue to work on writing a stand-alone function to generate a footer row which will display the total number of cookies sold per hour for all locations. When a new store is added using your form, the totals in the footer row should update to include these new sales numbers.
-
-Build incrementally. Test frequently.
 
 Be attentive to overall code structure.
   This is a good point to refactor your code into smaller functions/methods if you have some huge functions going on. Remember that each function should do one thing, and then you can compose more complex behavior out of functions.
@@ -86,6 +85,7 @@ function print_number_cookies (store){
 // constructor functions
 
 var Store = function(store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie){
+  //event.preventDefault();
   this.store_location = store_location;
   this.store_id = store_id;
   this.store_open = store_open || 6;
@@ -97,35 +97,24 @@ var Store = function(store_location, store_id, store_open, store_closed, min_cus
   this.customer_array = [ ];
   this.cph();
   this.hourly_totals();
-  // this.cph = function (){
-  //   for (var i = 0; i < this.duration; i++){
-  //     var min = Math.ceil(this.min_cust);
-  //     var max = Math.floor (this.max_cust);
-  //     var num = Math.floor(Math.random()*(max-min+1))+min;
-  //     this.customer_array.push(num);
-  // //   }
-  // };
+  console.log(Store);
 };
+
 Store.prototype.cph = function (){
   for (var i=0; i<this.duration; i++){
     var min = Math.ceil(this.min_cust);
     var max = Math.floor(this.max_cust);
     var num = Math.floor(Math.random()*(max-min+1))+min;
-    console.log(num);
     this.customer_array.push(num);
-    console.log('heythere');
   }
 };
 
 Store.prototype.hourly_totals = function (){
 
   for(var h=0; h < 14; h++){
-    console.log('Hello!');
-    var sum = 0;
     for (var j=0; j<14; j++){
+      var sum = 0;
       sum += this.customer_array[j];
-      console.log(this.customer_array[j]);
-      console.log(sum);
     }
     // var hourly_td = document.createElement('td');
     // hourly_td.textContent = `${l} Cookies`;
@@ -158,12 +147,26 @@ var cap_hill = new Store ('Capitol Hill', 'caphill', 6, 20, 20, 38, 2.3);
 var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
 /* form code */
-var my_great_function = function () { 
+var form_array = [ ];
 
-  console.log('did the thing!');
+var my_great_function = function (event) {
+  event.preventDefault();
+  if(event){
+    form_array.push(document.getElementById('store_location').value) ;
+    form_array.push(document.getElementById('store_open').value || null);
+    form_array.push(document.getElementById('store_closed').value || null);
+    form_array.push(document.getElementById('min_cust').value || null);
+    form_array.push(document.getElementById('max_cust').value || null );
+    form_array.push(document.getElementById('avg_cookie').value || null);
+
+  }
 };
-var store_location = document.getElementById('create_new');
-store_location.addEventListener('submit', my_great_function);
+console.log(form_array);
+console.log(document.getElementById('avg_cookie'));
+
+var create_new = document.getElementById('create_new');
+create_new.addEventListener('submit', my_great_function);
+
 
 /* and here we render */
 
