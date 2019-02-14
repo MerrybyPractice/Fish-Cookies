@@ -85,11 +85,10 @@ function print_number_cookies (store){
 // constructor functions
 
 var Store = function(store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie){
-  //event.preventDefault();
   this.store_location = store_location;
   this.store_id = store_id;
-  this.store_open = store_open || 6;
-  this.store_closed = store_closed || 20;
+  this.store_open = store_open;
+  this.store_closed = store_closed;
   this.duration = store_closed - store_open;
   this.min_cust = min_cust || 12;
   this.max_cust = max_cust || 36;
@@ -97,7 +96,6 @@ var Store = function(store_location, store_id, store_open, store_closed, min_cus
   this.customer_array = [ ];
   this.cph();
   this.hourly_totals();
-  console.log(Store);
 };
 
 Store.prototype.cph = function (){
@@ -147,35 +145,27 @@ var cap_hill = new Store ('Capitol Hill', 'caphill', 6, 20, 20, 38, 2.3);
 var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
 /* form code*/
-//event.target === the form
-var store_location = event.target.store_location.value;
-var store_open = event.target.store_open.value || null;
-var store_closed = event.target.store_closed.value || null;
-var min_cust = event.target.min_cust.value || null;
-var max_cust = event.target.max_cust.value || null;
-var avg_cookie = event.target.avg_cookie.value || null;
-
-var new_store = new Store (store_location, store_open, store_closed, min_cust, max_cust, avg_cookie);
-console.log(new_store);
-
-/*var form_array = [ ];
-
-var my_great_function = function (event) {
+var form_submit = function (event){
   event.preventDefault();
-  if(event){
-    form_array.push(document.getElementById('store_location').value) ;
-    form_array.push(document.getElementById('store_open').value || null);
-    form_array.push(document.getElementById('store_closed').value || null);
-    form_array.push(document.getElementById('min_cust').value || null);
-    form_array.push(document.getElementById('max_cust').value || null );
-    form_array.push(document.getElementById('avg_cookie').value || null);
-
-  }
+  var store_location = event.target.store_location.value;
+  console.log(store_location);
+  var store_id = event.target.store_id.value;
+  console.log(store_id);
+  var store_open = parseInt(event.target.store_open.value) || null;
+  console.log(store_open);
+  var store_closed = parseInt(event.target.store_closed.value) || null;
+  console.log(store_closed);
+  var min_cust = parseInt(event.target.min_cust.value) || null;
+  console.log(min_cust);
+  var max_cust = parseInt(event.target.max_cust.value) || null;
+  console.log(max_cust);
+  var avg_cookie = parseInt(event.target.avg_cookie.value) || null;
+  console.log(avg_cookie);
+  new Store (store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie);
 };
 
 var create_new = document.getElementById('create_new');
-create_new.addEventListener('submit', my_great_function);*/
-
+create_new.addEventListener('submit', form_submit);
 
 /* and here we render */
 
@@ -198,8 +188,6 @@ document.getElementById('cookies_per_hour').appendChild(timerow);
 var empty_box = document.createElement ('td');
 empty_box.textContent = '    ';
 document.getElementById('timerow').appendChild(empty_box);
-
-
 
 print_time_conversion(6, 20);
 
