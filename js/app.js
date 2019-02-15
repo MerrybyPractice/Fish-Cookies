@@ -8,19 +8,6 @@ TODO:
 User Stories (MVP)
 Priotity 2: a footer row of totals for each column.
 
-Technical Requirements (MVP)
-
-Your JS will need an event listener and and event handler, and you may also want a variable to facilitate DOM access to the form.
-  As we saw in class, the event handler should take the data from the input field, pass it into the constructor function, and create a new instance of a cookie stand that then appends to the table.
-  Are you going to do any error correction on input? You probably should. Look at what kind of input validation is built in to HTML5.
-
-If not complete from lab 7, continue to work on writing a stand-alone function to generate a footer row which will display the total number of cookies sold per hour for all locations. When a new store is added using your form, the totals in the footer row should update to include these new sales numbers.
-
-Be attentive to overall code structure.
-  This is a good point to refactor your code into smaller functions/methods if you have some huge functions going on. Remember that each function should do one thing, and then you can compose more complex behavior out of functions.
-  Anywhere you have repeated chunks of code, maybe you can start to apply some DRY principles. Generally, once some chunk of code is appearing for a 3rd time or so, that's when you want to consider refactoring.
-  When making code more DRY, look for repeated behaviors that act on different pieces of data. Put the behavior into a function that is declared with parameters to receive the unique data, and then replace the repeated code with the function called with the unique data in arguments.
-
 =========================================================================================================================================
 
 to add a new store:
@@ -112,6 +99,7 @@ var Store = function(store_location, store_id, store_open, store_closed, min_cus
   this.avg_cookie = avg_cookie || 4;
   this.customer_array = [ ];
   this.cph();
+  this.store_totals;
   //this.hourly_totals();
 };
 
@@ -122,7 +110,7 @@ Store.prototype.cph = function (){
     var num = Math.floor(Math.random()*(max-min+1))+min;
     this.customer_array.push(num);
   }
-  //console.log(this.customer_array);
+
 };
 
 var hourly_totals = function (){
@@ -145,6 +133,25 @@ var hourly_totals = function (){
   }
   target.appendChild(hourly_row);
 };
+Store.prototype.store_totals = function (){
+  //console.log(customer_array);
+
+  // var location_total = document.getElementById('loc_tot');
+  var store_td = document.createElement('td');
+  // var store_row = document.createElement('tr');
+  var sum = 0;
+  for (var s=0; s < this.customer_array.length; s++){
+    sum += this.customer_array[s];
+    console.log(sum);
+    store_td = document.createElement('td');
+  }
+  store_td.textContent = sum;
+  // store_row.appendChild(store_td);
+  document.getElementById(this.store_id).appendChild(store_td);
+
+  //this.store_id == 'alki'
+};
+
 // ============================
 
 // function cookie_sum(store){
@@ -189,14 +196,22 @@ var form_submit = function (event){
   console.log(max_cust);
   var avg_cookie = parseInt(event.target.avg_cookie.value) || null;
   console.log(avg_cookie);
-  new Store (store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie);
+  var create_store = new Store (store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie);
+
+  store_array.push(create_store);
+  store_list(create_store);
+  print_number_cookies(create_store);
+  hourly_totals();
 };
 
 var create_new = document.getElementById('create_new');
 create_new.addEventListener('submit', form_submit);
 
 /* and here we render */
-
+var total = document.createElement('td');
+total.setAttribute('id', 'loc_tot');
+total.textContent = 'Daily Location Total';
+document.getElementById('timerow').appendChild(total);
 // Store.store_location.prototype.render = function () {
 
 // //   var row_store_name = document.createElement('tr');
@@ -210,16 +225,14 @@ function store_list(store){
 
 
   print_number_cookies(store);
-
+  store.store_totals();
 
   // var tr_two = document.createElement('tr');
   // tr_two.textContent=`Tottal: ${cookie_sum(store)} Cookies`,
   // document.getElementById(store.store_list).appendChild(tr_two);
 
 }
-var total = document.createElement('td');
-total.textContent = 'Daily Location Total';
-document.getElementById('timerow').appendChild(total);
+
 
 
 
