@@ -3,9 +3,13 @@
 
 
 /* Table Styling */
-
+*{
+  background: #C3D9F2; 
+}
 table {
+  
   display: table;
+  background-color: #F0C162;
   width: 50em; 
   height: 25em; 
   border-spacing:2em; 

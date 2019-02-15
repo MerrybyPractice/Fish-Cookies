@@ -27,9 +27,26 @@ to add a new store:
   enter all data in constructor function
   add to store array
 */
+function scaffold_table (){
+  var table = document.createElement('table');
+  table.setAttribute('id', 'sales_numbers');
+  document.body.appendChild(table);
 
+  var timerow = document.createElement ('tr');
+  timerow.setAttribute('id','timerow');
+  document.getElementById('sales_numbers').appendChild(timerow);
 
+  var empty_box = document.createElement ('td');
+  empty_box.textContent = '    ';
+  document.getElementById('timerow').appendChild(empty_box);
 
+  print_time_conversion(6, 20);
+}
+function print_footer (){
+  var per_hour_total = document.createElement('tr');
+  per_hour_total.textContent = 'Hourly Totals';
+  per_hour_total.setAttribute('id', 'per_hour_total');
+}
 // helper funcitons
 
 //this converts the time measure from 24 hour clock to 12 hour clock and prints it to the timerow
@@ -98,7 +115,6 @@ var Store = function(store_location, store_id, store_open, store_closed, min_cus
   //this.hourly_totals();
 };
 
-
 Store.prototype.cph = function (){
   for (var i=0; i<this.duration; i++){
     var max = Math.ceil(this.max_cust);
@@ -111,23 +127,29 @@ Store.prototype.cph = function (){
 
 var hourly_totals = function (){
   //console.log(customer_array);
+  var target = document.getElementById('sales_numbers');
+  var hourly_td = document.createElement('td');
+  var hourly_row = document.createElement('tr');
+  hourly_td.textContent = 'Hourly Total';
+  hourly_row.appendChild(hourly_td);
+  //var table_footer = document.createElement('tfoot');
+
   for(var h=0; h < 14; h++){
     var sum = 0;
     for (var j=0; j<store_array.length; j++){
       sum += store_array[j].customer_array[h];
-      console.log(sum);
     }
-    var hourly_td = document.createElement('td');
-    hourly_td.textContent = `${sum} Cookies`;
-    document.getElementById('per_hour_total').appendChild(hourly_td);
+    hourly_td = document.createElement('td');
+    hourly_td.textContent = sum;
+    hourly_row.appendChild(hourly_td);
   }
-
+  target.appendChild(hourly_row);
 };
 // ============================
 
 // function cookie_sum(store){
 // }
-
+scaffold_table();
 //1st and Pike
 var first_and_pike = new Store('First and Pike', 'firstpike', 6, 20, 23, 65, 6.3) ;
 
@@ -149,7 +171,6 @@ var alki = new Store ('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
 var store_array = [first_and_pike, seatac, sea_cen, cap_hill, alki];
 
-hourly_totals();
 
 /* form code*/
 var form_submit = function (event){
@@ -181,28 +202,11 @@ create_new.addEventListener('submit', form_submit);
 // //   var row_store_name = document.createElement('tr');
 // // }
 
-var page_div = document.createElement('div');
-page_div.textContent = 'Sales Numbers';
-document.body.appendChild(page_div);
-var table = document.createElement('table');
-table.setAttribute('id', 'cookies_per_hour');
-
-document.getElementsByTagName('div')[0].appendChild(table);
-var timerow = document.createElement ('tr');
-timerow.setAttribute('id','timerow');
-document.getElementById('cookies_per_hour').appendChild(timerow);
-
-var empty_box = document.createElement ('td');
-empty_box.textContent = '    ';
-document.getElementById('timerow').appendChild(empty_box);
-
-print_time_conversion(6, 20);
-
 function store_list(store){
   var store_name = document.createElement('tr');
   store_name.setAttribute('id', store.store_id);
   store_name.textContent = `${store.store_location}`;
-  document.getElementById('cookies_per_hour').appendChild(store_name);
+  document.getElementById('sales_numbers').appendChild(store_name);
 
 
   print_number_cookies(store);
@@ -228,8 +232,5 @@ store_list(sea_cen);
 store_list(cap_hill);
 
 store_list(alki);
-
-var per_hour_total = document.createElement('tr');
-per_hour_total.textContent = 'Hourly Totals';
-per_hour_total.setAttribute('id', 'per_hour_total');
-document.getElementById('cookies_per_hour').appendChild(per_hour_total);
+print_footer();
+hourly_totals();
