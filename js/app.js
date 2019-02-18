@@ -3,7 +3,6 @@
 // global variables
 var store_array = [];
 
-//helper functions
 function scaffold_table (){
   var table = document.createElement('table');
   table.setAttribute('id', 'sales_numbers');
@@ -12,7 +11,9 @@ function scaffold_table (){
   var timerow = document.createElement ('tr');
   timerow.setAttribute('id','timerow');
   document.getElementById('sales_numbers').appendChild(timerow);
-  
+  // <table id="sales_numbers"></table>.appendChild(timerow);
+  // table.appendChild(timerow);
+
   var empty_box = document.createElement ('td');
   empty_box.textContent = '    ';
   document.getElementById('timerow').appendChild(empty_box);
@@ -25,6 +26,7 @@ function print_footer (){
   per_hour_total.textContent = 'Hourly Totals';
   per_hour_total.setAttribute('id', 'per_hour_total');
 }
+// helper funcitons
 
 //this converts the time measure from 24 hour clock to 12 hour clock and prints it to the timerow
 
@@ -72,6 +74,7 @@ function print_number_cookies (store){
   }
 }
 
+
 // constructor functions
 
 var Store = function(store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie){
@@ -86,7 +89,6 @@ var Store = function(store_location, store_id, store_open, store_closed, min_cus
   this.customer_array = [ ];
   this.cph();
   this.store_totals;
-  //this.hourly_totals();
 };
 
 Store.prototype.cph = function (){
@@ -100,13 +102,13 @@ Store.prototype.cph = function (){
 };
 
 var hourly_totals = function (){
-  //console.log(customer_array);
+
   var target = document.getElementById('sales_numbers');
   var hourly_td = document.createElement('td');
   var hourly_row = document.createElement('tr');
   hourly_td.textContent = 'Hourly Total';
   hourly_row.appendChild(hourly_td);
-  //var table_footer = document.createElement('tfoot');
+
 
   for(var h=0; h < 14; h++){
     var sum = 0;
@@ -120,21 +122,16 @@ var hourly_totals = function (){
   target.appendChild(hourly_row);
 };
 Store.prototype.store_totals = function (){
-  //console.log(customer_array);
-
-  // var location_total = document.getElementById('loc_tot');
   var store_td = document.createElement('td');
-  // var store_row = document.createElement('tr');
+
   var sum = 0;
   for (var s=0; s < this.customer_array.length; s++){
     sum += this.customer_array[s];
-  
+
     store_td = document.createElement('td');
   }
   store_td.textContent = sum;
-
   document.getElementById(this.store_id).appendChild(store_td);
-
 
 };
 
@@ -161,17 +158,10 @@ var form_submit = function (event){
   var create_store = new Store (store_location, store_id, store_open, store_closed, min_cust, max_cust, avg_cookie);
   store_array.push(create_store);
 
-  
+  var store_table = document.getElementById('sales_numbers');
   store_table.innerHTML = '';
 
-  var store_table = document.getElementById('store_info');
 
-    for (var s=0; s<store_array.length; s++){
-      store_info = document.createElement(td); 
-      store_info.textContent(store_array(s)); 
-      store_table.appendChild(store_info);
-      ;
-    }
   renderTable();
 
   dailyLocationTotal();
@@ -184,9 +174,7 @@ function dailyLocationTotal() {
   total.setAttribute('id', 'loc_tot');
   total.textContent = 'Daily Location Total';
   document.getElementById('timerow').appendChild(total);
-  // Store.store_location.prototype.render = function () {
-  // //   var row_store_name = document.createElement('tr');
-  // // }
+ 
 }
 
 function renderTable() {
@@ -204,16 +192,13 @@ function store_list(store){
   store_name.textContent = `${store.store_location}`;
 
   //clearing old data;
-  var table = document.getElementById('sales_numbers');
+  document.getElementById('sales_numbers');
+
   document.getElementById('sales_numbers').appendChild(store_name);
 
 
   print_number_cookies(store);
   store.store_totals();
-
-  // var tr_two = document.createElement('tr');
-  // tr_two.textContent=`Tottal: ${cookie_sum(store)} Cookies`,
-  // document.getElementById(store.store_list).appendChild(tr_two);
 
 }
 
@@ -239,7 +224,6 @@ function originalStores(){
   var alki = new Store('Alki', 'alki', 6, 20, 2, 16, 4.6);
 
   store_array = [first_and_pike, seatac, sea_cen, cap_hill, alki];
-var store_info = document.getElementById('store_info');
 
 }
 
