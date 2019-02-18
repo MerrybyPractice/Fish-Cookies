@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+
+<Html>
+      <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|IM+Fell+Double+Pica|IM+Fell+English" rel="stylesheet">
+
+          <title>Salmon Cookies: Backend Tools</title>
+     
+          <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css">
+      </head>
+      <body>
+    
+        <h1>Fish Cookies Sales Approximation Tools</h1>
+
+        <fieldset>
+            <legend>Create a New Salmon Cookies Shop</legend>
+        <form name = user_store_creation id = "create_new"> 
+          <p>Enter your values into the table below. </br> If you leave a box blank, the default value will be used.</p>
+          <p> Store Location </br> Required, no default. </p>
+            <input name = store_location id = "store_location" type = "input"> </br>
+            <p> Store ID </br> Required, no default.</p>
+            <input name = store_id id= "store_id"> </br>
+            <p> Hour Open </br> Default: 6am </p>
+            <input name = store_open id = "store_open" type = "input"> </br>
+            <p> Hour Closed </br> Default: 8pm </p>
+            <input name = store_closed id = "store_closed" type = "input"> </br>
+            <p> What is the minimum number of customers you are expecting? </br> Default: 12 </p>
+            <input name = min_cust id = "min_cust" type = "input"> </br> 
+            <p> What is the maximum number of cutomers you are expecting? </br> Default: 36 </p>
+            <input name = max_cust id = "max_cust" type = "input"> </br> 
+            <p> How many cookies do you believe youll sell on average? </br> Default: 4 </p> 
+            <input name = avg_cookie id = "avg_cookie" type = "input"> </br>
+            <input type = "submit" value = "Create Store">
+        </form>
+      </fieldset>
+        <script src = "../js/app.js"></script>
+      </body>
+      <footer>
+
+      </footer>
+  </Html>

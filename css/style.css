@@ -1,0 +1,232 @@
+
+/* General Styling */
+*{
+  background: #C3D9F2; 
+  font-family: 'IM Fell Double Pica', serif;
+}
+article{  
+  border: 2px; 
+  border-style: solid; 
+  border-color: #F25C36; 
+
+}
+article, p { 
+  background-color: #F0C162;
+}
+article > img{ 
+  border: 2px; 
+  border-style: solid; 
+  border-color: #F25C36; 
+}
+/* Index Specific*/
+header{ 
+  display: block; 
+  height: 5%; 
+  width: 100%;
+  background-color: #305474;
+  z-index: 1;
+} 
+header > img { 
+  margin-left: 21%;
+  margin-top: 15px;
+  background-color: #305474;
+  z-index: 2;
+  
+}
+h5 {
+  position:  relative;
+  font-family: 'IM Fell English', serif;
+  bottom: 200px; 
+  left: 600px;
+  z-index: 3;
+  color:#F2F1F5;
+  background-color: transparent;
+}
+h2{
+  position: relative;
+  font-family: 'Fredericka the Great', cursive;
+  bottom: 200px;
+  left: 600px; 
+  z-index: 3;
+  background-color: transparent;
+}
+h4{
+  position: relative;
+  font-family: 'IM Fell English', serif;
+  bottom: 200px;
+  left: 600px;   
+  z-index: 3;
+  background-color: transparent;
+}
+nav {
+  float: left ;
+  display: block; 
+  overflow: hidden;
+  height: 100%; 
+  width: 290px;
+  background-color: #F0C162; 
+}
+
+nav > ul {
+  list-style-type: none;
+  height: 100%;
+  width: 290px; 
+  background-color: #F0C162; 
+}
+
+nav > ul > li {
+  position: relative; 
+  right: 25px; 
+  height: 30px; 
+  padding: 10px; 
+  margin-right: 40px; 
+  background-color: #F0C162;
+  border: 2px; 
+  border-style: solid; 
+  border-color: #F25C36; 
+}
+nav > article { 
+  background-color: #F0C162;
+  width: 290px;
+}
+nav > article > p { 
+  background-color: #F0C162;
+  width: 290px;
+}
+nav > article > img { 
+  position: relative;
+  top: 5px; 
+  left: 0px;
+  width: 296px; 
+
+}
+article#about-us{
+  float: right; 
+  width: 1130px; 
+  height: 484px;
+  /*margin-right: 5.19%;*/
+
+
+}
+
+body > article > p:nth-child(2){
+  position:  relative;
+  bottom: 505px; 
+  left: 855px; 
+  height: 484px;
+  width: 274px;
+  overflow: auto;
+}
+article#make-your-own{
+  float: left; 
+  width: 39%;
+  height: 620px; 
+}
+article#make-your-own > img{
+  width: 60%;
+  margin: 0; 
+  position: relative; 
+  bottom: 30px; 
+}
+article#make-your-own > p { 
+  position: relative;; 
+  left: 360px;
+  bottom: 590px;
+  width: 27%; 
+  overflow: auto; 
+  margin: 0; 
+}
+article#make-your-own > h4 { 
+  position: relative; 
+  width: 100%; 
+  height: 50px; 
+  text-align: center; 
+  left: 0px; 
+  bottom: 21px; 
+  background-color: #305474;
+   
+
+}
+
+article#get-a-shirt{
+  position: relative;
+  left: 865px;
+  top: 488px;
+  height: 620px;
+  width: 39%;
+}
+article#get-a-shirt > img{
+  position: relative; 
+  bottom: 1050px; 
+  left: 20%; 
+  
+}
+article#get-a-shirt > h4 { 
+  position: relative;
+  bottom: 1100px; 
+  left: 0px; 
+  height: 50px; 
+  text-align: center; 
+  background-color: #305474;
+   
+}
+
+article#get-a-shirt > p{
+  position: relative; 
+  bottom: 1000px;
+  right: 10px;
+  width: 500px; 
+  text-align: center;  
+}
+
+
+footer{ 
+  display: block; 
+  height: 300px; 
+  width: 100%;
+  background-color: #305474;
+  z-index: 1;
+  margin-top: 70%;
+}
+footer > img { 
+position: relative; 
+left: 25%; 
+top: 15%; 
+z-index: 1;
+}
+button{ 
+  position: relative;
+  left: 45%; 
+  bottom: 10%; 
+  z-index: 2;
+}
+/* Table Styling */
+
+table {
+  
+  display: table;
+  background-color: #F0C162;
+  border-spacing: 4px;
+  border: 4px;
+  border-style: solid; 
+  border-color: #F25C36;
+  height: 25px; 
+  
+}
+tr, td {
+  width: 30px; 
+  height: 15px;
+  background-color: #F2F1F5;
+  padding: 2px;
+
+}
+fieldset { 
+  background-color: #F0C162;
+  border-color: #F25C36; 
+  width: 50%;
+  margin: 25px; 
+}
+input{ 
+  border-color: #F25C36; 
+  background-color: #F2F1F5
+}
